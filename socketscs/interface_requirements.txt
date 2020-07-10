@@ -1,0 +1,7 @@
+Requirements:
+
+1. If you don't receive a message from the server for more than 3 seconds highlight to user 'unhealthy'
+2. if the 'health' message from the server doesn't increase by 1 every message highlight to user 'unhealthy'
+3. Raise an alarm on the client if the sever sends the message 'Alarm'
+4. Server to send a message every 100ms
+5. ICD for server has messages in the following format {'heartbeat':(integer between 1-1024),'message':(str)}

@@ -1,8 +1,12 @@
 import pytest
 from time import sleep
 
-from server import Server
-from client import Client
+#from server import Server
+#from client import Client
+
+#from socketscs import Server,CLient
+from socketscs.server import Server
+from socketscs.client import Client
 
 def test_message_format_received_by_client():
     server,client=server_client_start()
@@ -60,7 +64,7 @@ def test_heartbeat_sent_by_server_and_received_on_client():
     sleep(1)
     response1 = client.read_buffer()['heartbeat']
     print(response1)
-    sleep (3)
+    sleep (1.5)
     response2 = client.read_buffer()['heartbeat']
     server_client_stop(server,client)
     assert response2!=response1
@@ -70,7 +74,7 @@ def test_heartbeat_every_second_on_client():
 
     server.sendHeartbeat()
     client.check_heartbeat()
-    sleep(5)
+    sleep(1)
     hb=client.check_heartbeat()
     server_client_stop(server,client)
     assert hb == True
@@ -81,7 +85,7 @@ def test_heartbeat_every_second_on_client_no_hearbeat():
 
 
     client.check_heartbeat()
-    sleep(5)
+    sleep(1)
     hb=client.check_heartbeat()
     server_client_stop(server,client)
     assert hb == False

@@ -1,4 +1,11 @@
-Requirements:
-
-1. If you don't receive a message from the server for more than 3 seconds highlight to user 'unhealthy'
-2. if the 'health' message from the server doesn't increase by 1 every message highlight to user 'unhealthy'
+attrs==19.3.0
+importlib-metadata==1.7.0
+more-itertools==8.4.0
+packaging==20.4
+pluggy==0.13.1
+py==1.9.0
+pyparsing==2.4.7
+pytest==5.4.3
+six==1.15.0
+wcwidth==0.2.5
+zipp==3.1.0
