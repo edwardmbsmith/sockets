@@ -87,7 +87,7 @@ class Client:
             except:
                 self.server_healthy=False
             print("server health ",self.server_healthy)
-            sleep(3)
+            sleep(1)
 
     def check_heartbeat(self):
         if (not self.t2.is_alive()):
