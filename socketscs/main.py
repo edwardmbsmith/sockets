@@ -1,11 +1,12 @@
-from server import Server
-from client import Client
+#from socketscs.server import Server
+#from socketscs.client import Client
 from time import sleep
 import sys
 import threading
 import random
 import string
-
+from socketscs.client import Client
+from socketscs.server import Server
 
 def main():
     try:
