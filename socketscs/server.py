@@ -129,8 +129,12 @@ class Server:
         self.listen=False
         self.heartbeat=False
         self.sendMessages=False
-        self.s.shutdown(socket.SHUT_RDWR)
+        try:
+            self.s.shutdown(socket.SHUT_RDWR)
 
+
+        except:
+            pass
         self.s.close()
         self.running=False
 
