@@ -33,7 +33,7 @@ def test_message_format_received_by_client():
 def test_server_start():
     server = Server('127.0.0.1',1234)
     server.start()
-    run=server.running
+    run=server.is_alive()
     server.stop()
     assert run == True
 
