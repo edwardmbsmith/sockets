@@ -8,6 +8,16 @@ from time import sleep
 from socketscs.server import Server
 from socketscs.client import Client
 
+import psutil
+
+def test_cpu_usage_for_client_and_server():
+    server,client=server_client_start()
+    server.sendHeartbeat()
+    client.check_heartbeat()
+    usage=check_cpu_usage()
+    server_client_stop(server,client)
+    assert usage<20
+
 def test_message_format_received_by_client():
     server,client=server_client_start()
     server.sendHeartbeat()
@@ -107,3 +117,8 @@ def server_client_stop(server,client):
     client.stop()
     server.stop()
     sleep(0.2)
+
+def check_cpu_usage():
+    current_process=psutil.Process()
+    usage=current_process.cpu_percent(1)
+    return usage
