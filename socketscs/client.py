@@ -108,7 +108,7 @@ class Client:
             sleep(1)
 
     def check_heartbeat(self):
-        """returns whether the server is healthy or not, by checking that the 
+        """returns whether the server is healthy or not, by checking that the
         heartbeat value is different to the previous read value (check every second)
         uses an internally accessible thread to check the status
 
@@ -121,3 +121,10 @@ class Client:
             print("client thread already started")
         print("heartbeat is ", self._server_healthy)
         return self._server_healthy
+
+    def is_connected(self):
+        """returns whether the client is connected or not
+
+        :rtype: boolean
+        """
+        return self._connected

@@ -40,7 +40,7 @@ def test_server_start():
 
 def test_server_accept_connection():
     server,client=server_client_start()
-    conn=client.connected
+    conn=client.is_connected()
     server_client_stop(server,client)
     assert conn==True
 
