@@ -98,13 +98,12 @@ class Server:
 
                     client.send(msg)
                     #print("server sent ",msg)
-<<<<<<< HEAD
+
                     self._messageToSend=""
-=======
-                    self.messageToSend=""
+
                 else:
                     sleep(0.01)
->>>>>>> develop
+
             except Exception as e:
                 print("ListenToClient error ",e)
                 client.close()
