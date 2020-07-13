@@ -58,6 +58,7 @@ class Client:
                         full_msg = b""
                     #else:
                     #    print("client havent received full message yet")
+                        sleep(0.01)
                 except Exception as e:
                     print("Client connection closed error ", e)
                     return

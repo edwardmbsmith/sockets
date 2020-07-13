@@ -99,6 +99,8 @@ class Server:
                     client.send(msg)
                     #print("server sent ",msg)
                     self._messageToSend=""
+                else:
+                    sleep(0.01)
             except Exception as e:
                 print("ListenToClient error ",e)
                 client.close()
