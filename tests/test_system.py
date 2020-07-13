@@ -43,14 +43,14 @@ def test_message_format_received_by_client():
 def test_server_start():
     server = Server('127.0.0.1',1234)
     server.start()
-    run=server.running
+    run=server.is_alive()
     server.stop()
     assert run == True
 
 
 def test_server_accept_connection():
     server,client=server_client_start()
-    conn=client.connected
+    conn=client.is_connected()
     server_client_stop(server,client)
     assert conn==True
 
