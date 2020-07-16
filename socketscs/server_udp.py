@@ -118,6 +118,7 @@ class ServerUDP:
         """
         self._listen=False
         self._running=False
+        sleep(1)
         try:
             self._s.close()
 

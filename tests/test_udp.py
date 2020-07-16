@@ -32,6 +32,7 @@ def test_data_received_by_server():
     client.set_message("fafatksruzzdxdcgszhg")
     sleep(1)
     message=server.read_buffer()
+
     server.stop()
     client.stop()
     assert message == "fafatksruzzdxdcgszhg"
