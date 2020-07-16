@@ -44,6 +44,8 @@ def test_header_data():
     header=sock.datagram('header',[0xff,0xFF,0xAA,0xFA,0xFF,0x02,0x32,0x01,0xff,0xFFAA,0x00,0x32,0x31,0xffab,"abcdefgh",0x02])
     header=header.to_bytes()
     client.set_message(header)
+    client.set_message(header)
+    client.set_message(header)
     sleep(1)
     message=server.read_buffer()
     stop_servers((client,server))
