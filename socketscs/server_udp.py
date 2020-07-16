@@ -193,7 +193,7 @@ class datagram:
         """
         path=os.path.dirname(__file__)
         self.data_type=input_type
-        self.data_lookup=pd.read_csv(path+"/data_types.csv").dropna()
+        self.data_lookup=pd.read_csv(path+"/data/data_types.csv").dropna()
 
 
         try:
