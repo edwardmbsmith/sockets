@@ -1,5 +1,5 @@
 .. socketscs documentation master file, created by
-   sphinx-quickstart on Fri Jul 10 18:43:43 2020.
+   sphinx-quickstart on Wed Jul 15 10:28:26 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
