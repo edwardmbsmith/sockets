@@ -50,6 +50,7 @@ def test_header_data():
     message=server.read_buffer()
     stop_servers((client,server))
     sleep(0.5)
+    assert len(message)>0
     assert message[0]==0xFF
     assert message[1]==0xFF
     assert message[2]==0xAA
