@@ -111,7 +111,7 @@ class ServerUDP:
 
         if len(message)>0:
             try:
-                self._s.sendto(message,(self.address,self._sendToPort))
+                self._s.sendall(message,(self.address,self._sendToPort))
             except Exception as e:
                 print("cannot send message, socket may be closed,",e)
 
