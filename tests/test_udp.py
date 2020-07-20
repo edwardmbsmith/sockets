@@ -46,7 +46,7 @@ def test_header_data():
     client.set_message(header)
     client.set_message(header)
     client.set_message(header)
-    sleep(1)
+    sleep(2)
     message=server.read_buffer()
     stop_servers((client,server))
     sleep(0.5)
