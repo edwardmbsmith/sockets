@@ -7,7 +7,7 @@ import os
 
 class ServerUDP:
     """This is a simple UDP server class, to be run
-    with a paired client. Mimics OBS
+    with a paired client. Mimics OBS.
 
     :param address: IP address of where the server should listen
     :type address: str, optional
