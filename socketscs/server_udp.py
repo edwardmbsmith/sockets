@@ -14,6 +14,7 @@ class ServerUDP:
     :param type: whether the server should act as an OBS or a DS
     :type type: str, optional
     """
+    BUFFER_SIZE=32
     def __init__(self,address=socket.gethostname(),type="OBS"):
         """Constructor method
         """
@@ -68,7 +69,7 @@ class ServerUDP:
         while self._listen and self.is_alive():
             try:
 
-                receivedMessage = self._s.recvfrom(32)
+                receivedMessage = self._s.recvfrom(BUFFER_SIZE)
 
                 if receivedMessage != "":
                     try:
@@ -99,6 +100,8 @@ class ServerUDP:
         :type message: str,bytes
         """
         if isinstance(message,str):
+            while len(message)<BUFFER_SIZE:
+                message=message + 0x00
             message=message.encode()
             self._messageToSend=message
         elif isinstance(message,bytes):
