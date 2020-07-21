@@ -28,8 +28,6 @@ def test_data_received_by_server():
     assert server.start()
     assert client.start()
     client.set_message("fafatksruzzdxdcgszhg")
-    client.set_message("fafatksruzzdxdcgszhg")
-    client.set_message("fafatksruzzdxdcgszhg")
     sleep(2)
     message=server.read_buffer()
 
@@ -43,8 +41,6 @@ def test_header_data():
     #header=client.prepare_header(command0=0xFF,command1=0xAA,command2=0xFA,command3=0xFF,sd_period=0x02,sd_id=0x32,store_sd_period=0x01,filter_pattern_number=0xff,length=0xFFAA,data_type=0x00,row_on_sdrs=0x32,col_on_sdrs=0x31,size_on_sdrs=0xffab,vehicle_id="abcdefgh",target_id=0x02)
     header=sock.datagram('header',[0xff,0xFF,0xAA,0xFA,0xFF,0x02,0x32,0x01,0xff,0xFFAA,0x00,0x32,0x31,0xffab,"abcdefgh",0x02])
     header=header.to_bytes()
-    client.set_message(header)
-    client.set_message(header)
     client.set_message(header)
     sleep(2)
     message=server.read_buffer()
