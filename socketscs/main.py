@@ -23,7 +23,7 @@ def main():
         print("server and client started")
         #server.sendHeartbeat()
         #client.check_heartbeat()
-        sleep(1)
+        #sleep(1)
         #server.set_message("test2")
         threading.Thread(target = random_message_thread,args = (client,)).start()
         threading.Thread(target = read_message,args = (server,)).start()
@@ -34,7 +34,7 @@ def main():
         server.stop()
     except KeyboardInterrupt:
         print("exiting")
-        #client.stop()
+        client.stop()
         server.stop()
     except Exception as e:
         print ("error ",e)
@@ -45,7 +45,7 @@ def main():
 
 def read_message(server):
     while server.is_alive():
-        print("most recent from",server.type,server.read_buffer())
+        print("\nmost recent from",server.type,":",server.read_buffer())
         sleep(1)
 
 def random_message_thread(server):
@@ -57,7 +57,7 @@ def random_message_thread(server):
     print("starting messaging thread")
     while server.is_alive():
         _random_message(server)
-        sleep(0.2)
+        sleep(1)
     print("server is dead")
 
 def _random_message(server):
@@ -67,7 +67,7 @@ def _random_message(server):
     :type server: Server
     """
     message=''.join(random.choice(string.ascii_lowercase) for _ in range(20))
-    #print("sending ",message)
+    print("sending from",server.type,":",message)
     server.set_message(message)
 
 if __name__ == "__main__":

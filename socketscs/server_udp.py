@@ -14,7 +14,7 @@ class ServerUDP:
     :param type: whether the server should act as an OBS or a DS
     :type type: str, optional
     """
-    BUFFER_SIZE=32
+    BUFFER_SIZE=255
     def __init__(self,address=socket.gethostname(),type="OBS"):
         """Constructor method
         """
@@ -68,8 +68,8 @@ class ServerUDP:
         print("Server: Ready to receive data")
         while self._listen and self.is_alive():
             try:
-
-                receivedMessage = self._s.recvfrom(BUFFER_SIZE)
+                if (self._listen):
+                    receivedMessage = self._s.recvfrom(self.BUFFER_SIZE)
 
                 if receivedMessage != "":
                     try:
@@ -79,15 +79,17 @@ class ServerUDP:
                             self._message=receivedMessage[0]
                             print('decoding hex')
                         except Exception as e:
-                            self._error_handling(e,"_listenForDataThread")
+                            self._error_handling(e,"_listenForDataThread 1")
+
+                    self._message=self._message[1:receivedMessage[0][0]+1]
                     print(self.type , " received message '",self._message,"'")
-                    print("length",len(receivedMessage[0]))
+
 
                     ip_addr = receivedMessage[1]
                 #print(self._message)
             except socket.error as e:
 
-                self._error_handling(e,"_listenForDataThread")
+                self._error_handling(e,"_listenForDataThread 2")
                 self.stop()
             #print("Heard one connection")
         #print("Finished Listening for connections")
@@ -99,9 +101,8 @@ class ServerUDP:
         :param message: the message to be sent by the client
         :type message: str,bytes
         """
+        message_length=len(message)
         if isinstance(message,str):
-            while len(message)<BUFFER_SIZE:
-                message=message + 0x00
             message=message.encode()
             self._messageToSend=message
         elif isinstance(message,bytes):
@@ -112,9 +113,14 @@ class ServerUDP:
             print ("set_message not string or bytes error type(message):",type(message))
             message=""
 
+        while len(message)<self.BUFFER_SIZE-1:
+            message=message + b'\0'
+        message=message_length.to_bytes(1,"big")+message
+        
+
         if len(message)>0:
             try:
-                self._s.sendall(message,(self.address,self._sendToPort))
+                self._s.sendto(message,(self.address,self._sendToPort))
             except Exception as e:
                 print("cannot send message, socket may be closed,",e)
 
@@ -138,7 +144,7 @@ class ServerUDP:
 
         :rtype: boolean
         """
-        if (self._s.fileno()>0 and self._running):
+        if (self._s.fileno()>0 and self._running and self._listen):
             return True
         else:
             return False
