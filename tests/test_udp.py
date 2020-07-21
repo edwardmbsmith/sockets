@@ -25,8 +25,8 @@ def test_check_client_udp():
 def test_data_received_by_server():
     server = sock.ServerUDP('127.0.0.1',"OBS")
     client = sock.ServerUDP('127.0.0.1',"DS")
-    server.start()
-    client.start()
+    assert server.start()
+    assert client.start()
     client.set_message("fafatksruzzdxdcgszhg")
     client.set_message("fafatksruzzdxdcgszhg")
     client.set_message("fafatksruzzdxdcgszhg")
@@ -38,6 +38,7 @@ def test_data_received_by_server():
 
 def test_header_data():
     client,server=start_servers()
+
 
     #header=client.prepare_header(command0=0xFF,command1=0xAA,command2=0xFA,command3=0xFF,sd_period=0x02,sd_id=0x32,store_sd_period=0x01,filter_pattern_number=0xff,length=0xFFAA,data_type=0x00,row_on_sdrs=0x32,col_on_sdrs=0x31,size_on_sdrs=0xffab,vehicle_id="abcdefgh",target_id=0x02)
     header=sock.datagram('header',[0xff,0xFF,0xAA,0xFA,0xFF,0x02,0x32,0x01,0xff,0xFFAA,0x00,0x32,0x31,0xffab,"abcdefgh",0x02])
@@ -116,8 +117,9 @@ def test_cpu_usage_for_client_and_server():
 def start_servers():
     server = sock.ServerUDP('127.0.0.1',"OBS")
     client = sock.ServerUDP('127.0.0.1',"DS")
-    server.start()
-    client.start()
+    assert server.start()
+    assert client.start()
+    sleep(1)
     return client,server
 
 def stop_servers(servers):

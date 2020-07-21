@@ -57,7 +57,7 @@ def random_message_thread(server):
     print("starting messaging thread")
     while server.is_alive():
         _random_message(server)
-        sleep(1)
+        sleep(0.2)
     print("server is dead")
 
 def _random_message(server):

@@ -15,6 +15,7 @@ class ServerUDP:
     :type type: str, optional
     """
     BUFFER_SIZE=255
+    RETRIES=5
     def __init__(self,address=socket.gethostname(),type="OBS"):
         """Constructor method
         """
@@ -49,7 +50,7 @@ class ServerUDP:
         :rtype: boolean
         """
         retries=0
-        while retries<3 and self._running==False:
+        while retries<=self.RETRIES and self._running==False:
             try:
                 print("Trying to start server")
                 self._s.bind((self.address, self._listenToPort))
@@ -58,14 +59,13 @@ class ServerUDP:
                 print("Running")
 
             except Exception as e:
-                if retries<2:
+                if retries<self.RETRIES:
                     print("starting server failed, retrying...")
                     sleep(1)
                 else:
                     print("Server Failed ",e)
                     self.stop()
-                    if retries==2:
-                        return False
+                    return False
                 retries=retries+1
 
 
