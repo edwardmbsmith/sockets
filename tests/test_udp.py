@@ -30,11 +30,10 @@ def test_data_received_by_server():
     client.set_message("fafatksruzzdxdcgszhg")
     client.set_message("fafatksruzzdxdcgszhg")
     client.set_message("fafatksruzzdxdcgszhg")
-    sleep(1)
+    sleep(2)
     message=server.read_buffer()
 
-    server.stop()
-    client.stop()
+    stop_servers((client,server))
     assert message == "fafatksruzzdxdcgszhg"
 
 def test_header_data():
