@@ -26,7 +26,7 @@ def main():
         #sleep(1)
         #server.set_message("test2")
         threading.Thread(target = random_message_thread,args = (client,)).start()
-        threading.Thread(target = read_message,args = (server,)).start()
+        #threading.Thread(target = read_message,args = (server,)).start()
 
         #random_message(server)
         input("press any key to exit")
@@ -45,7 +45,7 @@ def main():
 
 def read_message(server):
     while server.is_alive():
-        print("\nmost recent from",server.type,":",server.read_buffer())
+        print("\nmost recent from",server.type,":",server.read_buffer(),"(alive:",server.is_alive(),")")
         sleep(1)
 
 def random_message_thread(server):

@@ -15,7 +15,7 @@ class ServerUDP:
     :type type: str, optional
     """
     BUFFER_SIZE=255
-    RETRIES=5
+    RETRIES=10
     def __init__(self,address=socket.gethostname(),type="OBS"):
         """Constructor method
         """
@@ -59,12 +59,12 @@ class ServerUDP:
                 print("Running")
 
             except Exception as e:
+                #self.stop()
                 if retries<self.RETRIES:
-                    print("starting server failed, retrying...")
+                    print("starting server failed, retrying...",e)
                     sleep(1)
                 else:
                     print("Server Failed ",e)
-                    self.stop()
                     return False
                 retries=retries+1
 
@@ -78,9 +78,12 @@ class ServerUDP:
         while self._listen and self.is_alive():
             try:
                 if (self._listen):
+                    print(self.type ,"waiting for message..")
                     receivedMessage = self._s.recvfrom(self.BUFFER_SIZE)
+                    print(self.type ,"got message..")
 
                 if receivedMessage != "":
+                    print("received a message")
                     try:
                         self._message = receivedMessage[0].decode()
                     except:
@@ -97,9 +100,9 @@ class ServerUDP:
                     ip_addr = receivedMessage[1]
                 #print(self._message)
             except socket.error as e:
-
-                self._error_handling(e,"_listenForDataThread 2")
                 self.stop()
+                self._error_handling(e,"_listenForDataThread 2")
+
             #print("Heard one connection")
         #print("Finished Listening for connections")
 
@@ -138,7 +141,8 @@ class ServerUDP:
         """
         self._listen=False
         self._running=False
-        sleep(1)
+        self._s.sendto(b'\4'+"quit".encode(),(self.address,self._listenToPort))
+        sleep(0.1)
         try:
             self._s.close()
 
