@@ -123,6 +123,7 @@ def start_servers():
 def stop_servers(servers):
     for server in range(len(servers)):
         servers[server].stop()
+    sleep(2)
 
 def check_cpu_usage():
     current_process=psutil.Process()
