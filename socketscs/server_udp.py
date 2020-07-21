@@ -40,6 +40,9 @@ class ServerUDP:
             self._listenToPort=1235
             self._sendToPort=1234
 
+        else:
+            raise TypeError("Server type is not known")
+
         print(type,self._listenToPort,self._sendToPort)
 
     def start(self):

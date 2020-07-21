@@ -1,18 +1,119 @@
-﻿type,No,Data,Description,Variable,Format,Bytes,Min,Max
-header,1,0,Header,header,byte,1,0xff,0xff
-header,2,1,Command Type 0,command0,byte,1,0x00,0xff
-header,3,2,Command Type 1,command1,byte,1,0x00,0xff
-header,4,3,Command Type 2,command2,byte,1,0x00,0xff
-header,5,4,Command Type 3,command3,byte,1,0x00,0xff
-header,6,5,SD Period (*1),sd_period,byte,1,0x02,0x02
-header,7,6,SD ID (*2),sd_id,byte,1,0x01,0x32
-header,8,7,Store SD Period (*3),store_sd_period,byte,1,0x01,0x78
-header,9,8,Filter Pattern Number,filter_pattern_number,byte,1,0x00,0xff
-header,10,9,Length (*4),length,byte,2,0x0000,0xffff
-header,11,11,Data Type,data_type,byte,1,0x00,0x02
-header,12,12,Row number of matrix on SDRS,row_on_sdrs,byte,1,0x01,0x32
-header,13,13,Column number of matrix on SDRS,col_on_sdrs,byte,1,0x01,0x31
-header,14,14,Size of matrix on SDRS,size_on_sdrs,byte,2,0x0000,0xffff
-header,15,16,Vehicle-ID (*5),vehicle_id,string,8,*,*
-header,16,24,ID of target vehicle (*6),target_id,byte,1,0x01,0x02
-,17,,,,,,,
+type	No	Data	Description	Variable	Format	Bytes	Min	Max
+header	1	0	Header	header	byte	1	0xff	0xff
+header	2	1	Command Type 0	command0	byte	1	0x00	0xff
+header	3	2	Command Type 1	command1	byte	1	0x00	0xff
+header	4	3	Command Type 2	command2	byte	1	0x00	0xff
+header	5	4	Command Type 3	command3	byte	1	0x00	0xff
+header	6	5	SD Period (*1)	sd_period	byte	1	0x02	0x02
+header	7	6	SD ID (*2)	sd_id	byte	1	0x01	0x32
+header	8	7	Store SD Period (*3)	store_sd_period	byte	1	0x01	0x78
+header	9	8	Filter Pattern Number	filter_pattern_number	byte	1	0x00	0xff
+header	10	9	Length (*4)	length	byte	2	0x0000	0xffff
+header	11	11	Data Type	data_type	byte	1	0x00	0x02
+header	12	12	Row number of matrix on SDRS	row_on_sdrs	byte	1	0x01	0x32
+header	13	13	Column number of matrix on SDRS	col_on_sdrs	byte	1	0x01	0x31
+header	14	14	Size of matrix on SDRS	size_on_sdrs	byte	2	0x0000	0xffff
+header	15	16	Vehicle-ID (*5)	vehicle_id	string	8	*	*
+header	16	24	ID of target vehicle (*6)	target_id	byte	1	0x01	0x02
+pd_message	17	0		SequenceCounter		4		
+	18	4		ProtocolVersion		2		
+	19	6		MsgType		2		
+	20	8		ComId		4		
+	21	12		TopoCount		4		
+	22	16		DatasetLength		4		
+	23	20		reserved		4		
+	24	24		reserved		4		
+	25	28		ReplyIPAddress		4		
+	26	32		Dataset		1436		
+	27	x		FCS		4		
+	28							
+	29							
+	30							
+	31							
+	32							
+	33							
+	34							
+	35							
+	36							
+	37							
+	38							
+	39							
+	40							
+	41							
+	42							
+	43							
+	44							
+	45							
+	46							
+	47							
+	48							
+	49							
+	50							
+	51							
+	52							
+	53							
+	54							
+	55							
+	56							
+	57							
+	58							
+	59							
+	60							
+	61							
+	62							
+	63							
+	64							
+	65							
+	66							
+	67							
+	68							
+	69							
+	70							
+	71							
+	72							
+	73							
+	74							
+	75							
+	76							
+	77							
+	78							
+	79							
+	80							
+	81							
+	82							
+	83							
+	84							
+	85							
+	86							
+	87							
+	88							
+	89							
+	90							
+	91							
+	92							
+	93							
+	94							
+	95							
+	96							
+	97							
+	98							
+	99							
+	100							
+	101							
+	102							
+	103							
+	104							
+	105							
+	106							
+	107							
+	108							
+	109							
+	110							
+	111							
+	112							
+	113							
+	114							
+	115							
+	116							
+	117							
+	118							
