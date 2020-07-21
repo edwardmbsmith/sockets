@@ -18,8 +18,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'socketscs'
-copyright = '2020, Edward Smith'
-author = 'Edward Smith'
+copyright = '2020, Author'
+author = 'Author'
 
 
 # -- General configuration ---------------------------------------------------
@@ -68,17 +68,3 @@ html_static_path = ['_static']
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
-
-import sys
-import pkg_resources
-try:
-    release = pkg_resources.get_distribution('socketscs').version
-except pkg_resources.DistributionNotFound:
-    print 'To build the documentation, The distribution information of socketscs'
-    print 'Has to be available.  Either install the package into your'
-    print 'development environment or run "setup.py develop" to setup the'
-    print 'metadata.  A virtualenv is recommended!'
-    sys.exit(1)
-del pkg_resources
-
-version = '.'.join(release.split('.')[:2])

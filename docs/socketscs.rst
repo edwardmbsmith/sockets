@@ -4,10 +4,18 @@ socketscs package
 Submodules
 ----------
 
-socketscs.client module
------------------------
+socketscs.legacy\_client module
+-------------------------------
 
-.. automodule:: socketscs.client
+.. automodule:: socketscs.legacy_client
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+socketscs.legacy\_server module
+-------------------------------
+
+.. automodule:: socketscs.legacy_server
    :members:
    :undoc-members:
    :show-inheritance:
@@ -20,10 +28,10 @@ socketscs.main module
    :undoc-members:
    :show-inheritance:
 
-socketscs.server module
------------------------
+socketscs.server\_udp module
+----------------------------
 
-.. automodule:: socketscs.server
+.. automodule:: socketscs.server_udp
    :members:
    :undoc-members:
    :show-inheritance:
