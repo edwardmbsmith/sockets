@@ -48,17 +48,26 @@ class ServerUDP:
 
         :rtype: boolean
         """
-        try:
-            print("Trying to start server")
-            self._s.bind((self.address, self._listenToPort))
-            #self._s.listen(5) #not required for UDP
-            self._running = True
-            print("Running")
+        retries=0
+        while retries<3 and self._running==False:
+            try:
+                print("Trying to start server")
+                self._s.bind((self.address, self._listenToPort))
+                #self._s.listen(5) #not required for UDP
+                self._running = True
+                print("Running")
 
-        except Exception as e:
-            print("Server Failed ",e)
-            self.stop()
-            return False
+            except Exception as e:
+                if retries<2:
+                    print("starting server failed, retrying...")
+                    sleep(1)
+                else:
+                    print("Server Failed ",e)
+                    self.stop()
+                    if retries==2:
+                        return False
+                retries=retries+1
+
 
         self._listen=True
         self._t1.start() #_listenForDataThread
@@ -116,7 +125,7 @@ class ServerUDP:
         while len(message)<self.BUFFER_SIZE-1:
             message=message + b'\0'
         message=message_length.to_bytes(1,"big")+message
-        
+
 
         if len(message)>0:
             try:
