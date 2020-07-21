@@ -108,8 +108,6 @@ def test_cpu_usage_for_client_and_server():
     message=server.read_buffer()
     stop_servers((client,server))
     sleep(0.5)
-
-    stop_servers((client,server))
     assert usage<20
 
 
@@ -125,7 +123,7 @@ def start_servers():
 def stop_servers(servers):
     for server in range(len(servers)):
         servers[server].stop()
-    sleep(2)
+    #sleep(2)
 
 def check_cpu_usage():
     current_process=psutil.Process()
